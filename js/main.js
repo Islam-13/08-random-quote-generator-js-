@@ -59,10 +59,13 @@ var quotes = [
 
 var quoteBox = document.getElementById("quote-box");
 
+var lastValue = 0;
+
 function getRandomQuote() {
   var random = Math.floor(Math.random() * quotes.length);
 
-  quoteBox.innerHTML = `
+  if (random != lastValue) {
+    quoteBox.innerHTML = `
         <div class="quote">
           <p>${quotes[random].quote}</p>
         </div>
@@ -73,4 +76,6 @@ function getRandomQuote() {
           <p class="author-name"><span>―</span> ${quotes[random].authour}.</p>
         </div>
   `;
+    lastValue = random;
+  } else getRandomQuote();
 }
